@@ -30,12 +30,13 @@ public class DBmanager extends GeneFax {
 
             stmt = c.createStatement();
             String genes = "CREATE TABLE GENES" +
-                           "(GENE_ID TEXT PRIMARY KEY," +
+                           "(AUTO_ID INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                           "GENE_ID TEXT," +
                            "GENE_NAME TEXT NOT NULL," +
                            "FILENAME VARCHAR(100) NOT NULL," +
                            "DATA_LABEL TEXT," + 
                            "DATA_AVG FLOAT(2));";
-            System.out.println("[DEBUG: genes]"+genes);
+            System.out.println("[DEBUG: create0]"+genes);
             stmt.executeUpdate(genes);
              
             String geneID = "CREATE TABLE DATAPOINTS" +
@@ -43,11 +44,13 @@ public class DBmanager extends GeneFax {
                             "DATA_POINT FLOAT(4)," +
                             "FILENAME VARCHAR(100) REFERENCES GENES(FILENAME)," +
                             "GENE_ID VARCHAR(20) REFERENCES GENES(GENE_ID));";
+            System.out.println("[DEBUG: create1]"+geneID);
             stmt.executeUpdate(geneID);
              
             String geneFold = "CREATE TABLE FOLD" +
                               "(FOLDS FLOAT(2)," +
                               "GENE_ID PRIMARY KEY REFERENCES GENES(GENE_ID));";
+            System.out.println("[DEBUG: create2]"+geneFold);
             stmt.executeUpdate(geneFold);
             
             String geneRelation = "CREATE TABLE GENE_RELATION" +
@@ -57,7 +60,8 @@ public class DBmanager extends GeneFax {
                               "FILENAME_B VARCHAR(100) REFERENCES GENES(FILENAME),"+
                               "FOLD_CHANGE FLOAT,"+
                               "QVALUE FLOAT);";
-            stmt.executeUpdate(geneFold);
+            System.out.println("[DEBUG: create3]"+geneRelation);
+            stmt.executeUpdate(geneRelation);
             
             stmt.close(); 
             c.close();
@@ -149,7 +153,7 @@ public class DBmanager extends GeneFax {
             stmt = c.createStatement();
             
             for(int i = 0; i < gr.size(); i++){
-                sql = "INSERT INTO GENE_RELATION (GENE_ID,GENE_NAME,FOLD_CHANGE,QVALUE)" +
+                sql = "INSERT INTO GENE_RELATION (GENE_ID,GENE_NAME,FILENAME_A,FILENAME_B,FOLD_CHANGE,QVALUE)" +
                             "VALUES ( \""+ gr.get(i).getGeneID() + "\",\""+
                             gr.get(i).getGeneName() + "\",\""+
                             relation_a + "\",\"" +
@@ -248,7 +252,7 @@ public class DBmanager extends GeneFax {
 
             stmt = c.createStatement();
             String sql0 = "SELECT * FROM GENE_RELATION WHERE FILENAME_A LIKE \""
-                    +relation_a+"\" AND FILENAME_B LIKE "+relation_b+";";
+                    +relation_a+"\" AND FILENAME_B LIKE \""+relation_b+"\";";
             System.out.println("[DEBUG: get rel0]"+sql0);
             ResultSet rs = stmt.executeQuery( sql0 );
 //            c.commit();

@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author pete
@@ -161,18 +163,23 @@ public class ImportManager {
                     continue;
                 }
                 String[] parsed_data = line.split(delimiter);
-                System.out.println("debug~~~~~"+line+" xxxxxx "+parsed_data[2]);
                 
                 String t0 = parsed_data[2];
-                t0.replace('−', '-');
                 String t1 = parsed_data[3];
-                t1.replace('−', '-');
-                System.out.println("debug~~~~~"+line+" xxxxxx "+t0);
+                
+                t0 = t0.replace("−", "-");
+                t1 = t1.replace("−", "-");
+                
+                float f0, f1;
+                
+                f0 = Float.parseFloat(t0.toString());
+                f1 = Float.parseFloat(t1.toString());
+                
                 GeneRelation gr = new GeneRelation(
                         parsed_data[0],
                         parsed_data[1],
-                        Float.parseFloat(t0),
-                        Float.parseFloat(t1)
+                        f0,
+                        f1
                 );
                 ret.add(gr);
             }// end while
