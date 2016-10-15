@@ -19,6 +19,7 @@ public class ImportManager {
     
     private String importPath;
     private int replicantCount;
+    final private int MIN_FLD_COUNT = 3;
     
     /**
      * 
@@ -64,15 +65,14 @@ public class ImportManager {
                     String[] parsed_data = line.split(delimiter);
                     
                     // if not enough data feilds are provided, return null
-                    if( 4 > parsed_data.length ){
+                    if( MIN_FLD_COUNT > parsed_data.length ){
                         return null;
                     }
                     
                     GeneDataRow gdr = new GeneDataRow( parsed_data[0], 
                             parsed_data[1],
                             dataLabel,
-                            new Float(parsed_data[1+this.replicantCount]).floatValue(),
-                            new Float(parsed_data[2 + replicantCount]).floatValue()
+                            new Float(parsed_data[1+this.replicantCount]).floatValue()
                     );
                     for( int i = 0 ; i < replicantCount; i++ ){
                         gdr.addDataPoint(new Float(parsed_data[2 + i]).floatValue());
