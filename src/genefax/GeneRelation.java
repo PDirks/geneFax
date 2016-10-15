@@ -15,11 +15,19 @@ public class GeneRelation {
     private float FoldChange;
     private float QValue;
     
+    private String relation_a;
+    private String relation_b;
+    
     public GeneRelation( String name, String id, float fc, float q ){
         this.GeneName = name;
         this.GeneID = id;
         this.FoldChange = fc;
         this.QValue = q;
+    }
+    
+    public void setRelation(String relation_a, String relation_b){
+        this.relation_a = relation_a;
+        this.relation_b = relation_b;
     }
     
     public String getGeneName(){

@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author pete
@@ -155,12 +157,29 @@ public class ImportManager {
         try {
             br = new BufferedReader( new FileReader( relationPath ) );
             while((line = br.readLine()) != null){
+                
+                if(rowCount == 0){
+                    rowCount++;
+                    continue;
+                }
                 String[] parsed_data = line.split(delimiter);
+                
+                String t0 = parsed_data[2];
+                String t1 = parsed_data[3];
+                
+                t0 = t0.replace("−", "-");
+                t1 = t1.replace("−", "-");
+                
+                float f0, f1;
+                
+                f0 = Float.parseFloat(t0.toString());
+                f1 = Float.parseFloat(t1.toString());
+                
                 GeneRelation gr = new GeneRelation(
                         parsed_data[0],
                         parsed_data[1],
-                        new Float( parsed_data[2] ).floatValue(),
-                        new Float( parsed_data[3] ).floatValue()
+                        f0,
+                        f1
                 );
                 ret.add(gr);
             }// end while
