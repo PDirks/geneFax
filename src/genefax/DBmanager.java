@@ -50,6 +50,15 @@ public class DBmanager extends GeneFax {
                               "GENE_ID PRIMARY KEY REFERENCES GENES(GENE_ID));";
             stmt.executeUpdate(geneFold);
             
+            String geneRelation = "CREATE TABLE GENE_RELATION" +
+                              "(GENE_NAME TEXT REFERENCES GENES(GENE_NAME)," +
+                              "GENE_ID TEXT REFERENCES GENES(GENE_ID)," +
+                              "FILENAME_A VARCHAR(100) REFERENCES GENES(FILENAME),"+
+                              "FILENAME_B VARCHAR(100) REFERENCES GENES(FILENAME),"+
+                              "FOLD_CHANGE FLOAT,"+
+                              "QVALUE FLOAT);";
+            stmt.executeUpdate(geneFold);
+            
             stmt.close(); 
             c.close();
              
@@ -86,7 +95,7 @@ public class DBmanager extends GeneFax {
         return true;
     }// end dropTable;
     
-    public boolean insert( ArrayList<GeneDataRow> gdr, String filename ){
+    public boolean insertData( ArrayList<GeneDataRow> gdr, String filename ){
         Connection c = null;
         Statement stmt = null;
         System.out.println("[DEBUG: INSERT]starting");
@@ -125,14 +134,47 @@ public class DBmanager extends GeneFax {
             return false;
         }
         return true;
-    }// end insert2
+    }// end insert
+    
+    public boolean insertRelation( ArrayList<GeneRelation> gr, String relation_a, String relation_b ){
+        Connection c = null;
+        Statement stmt = null;
+        System.out.println("[DEBUG: rel]starting");
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:GeneFax.db");
+            c.setAutoCommit(false);
+            System.out.println("[DEBUG: rel]Opened database successfully");
+            String sql;
+            stmt = c.createStatement();
+            
+            for(int i = 0; i < gr.size(); i++){
+                sql = "INSERT INTO GENE_RELATION (GENE_ID,GENE_NAME,FOLD_CHANGE,QVALUE)" +
+                            "VALUES ( \""+ gr.get(i).getGeneID() + "\",\""+
+                            gr.get(i).getGeneName() + "\",\""+
+                            relation_a + "\",\"" +
+                            relation_b + "\"," +
+                            gr.get(i).getFoldChange() + ","+ 
+                            gr.get(i).getQValue() +" );";
+                System.out.println("[DEBUG: insert rel]" + sql);
+                stmt.executeUpdate(sql);
+            }
+            stmt.close();
+            c.commit();
+            c.close();
+        } catch( Exception e ){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     
     /**
      * 
      * @param filename name of data file you want to poll
      * @return arraylist of genedatarows, same as was originally entered into the db
      */
-    public ArrayList<GeneDataRow> getAllFromFile( String filename ){
+    public ArrayList<GeneDataRow> getAllDataFromFile( String filename ){
         ArrayList<GeneDataRow> ret = new ArrayList<GeneDataRow>(128);
         
         Connection c = null;
@@ -191,6 +233,45 @@ public class DBmanager extends GeneFax {
         
         return ret;
     }// end getAllFromFile
+    
+    public ArrayList<GeneRelation> getAllRelation(String relation_a, String relation_b){
+        ArrayList<GeneRelation> ret = new ArrayList<GeneRelation>(128);
+        
+        Connection c = null;
+        Statement stmt = null;
+        Statement sub_stmt = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:GeneFax.db");
+            c.setAutoCommit(true);
+            System.out.println("[DEBUG: get rel]Opened database successfully");
+
+            stmt = c.createStatement();
+            String sql0 = "SELECT * FROM GENE_RELATION WHERE FILENAME_A LIKE \""
+                    +relation_a+"\" AND FILENAME_B LIKE "+relation_b+";";
+            System.out.println("[DEBUG: get rel0]"+sql0);
+            ResultSet rs = stmt.executeQuery( sql0 );
+//            c.commit();
+            while ( rs.next() ) {
+                GeneRelation gr = new GeneRelation(
+                        rs.getString("GENE_NAME"), 
+                        rs.getString("GENE_NAME"), 
+                        rs.getFloat("FOLD_CHANGE"), 
+                        rs.getFloat("QVALUE")
+                );
+                ret.add(gr);
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+        } catch ( Exception e ) {
+          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+          System.exit(0);
+        }
+        System.out.println("[DEBUG: get rel]Operation done successfully..."+ ret.size());
+        
+        return ret;
+    }// end getAllRelation
     
 }// end DBmanager
 

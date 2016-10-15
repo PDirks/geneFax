@@ -19,12 +19,16 @@ public class TestController {
         
         ImportManager imp = new ImportManager("./test_data_1.csv", 2);
         ArrayList<GeneDataRow> gdr = imp.importCSV();
+        ArrayList<GeneRelation> gr = imp.importRelationCSV();
         
         DBmanager test = new DBmanager("jdbc:sqlite:GeneFax.db");
 //        test.dropTable("jdbc:sqlite:GeneFax.db");
         test.createTable();
-        test.insert(gdr, "./test_data_1.csv");
-        test.getAllFromFile("./test_data_1.csv").size();
+        test.insertData(gdr, "./test_data_a.csv");
+        test.insertData(gdr, "./test_data_b.csv");
+        test.insertRelation(gr, "./test_data_a.csv", "./test_data_b.csv");
+        test.getAllDataFromFile("./test_data_1.csv").size();
+        test.getAllRelation("./test_data_a.csv", "./test_data_b.csv");
         
         return true;
     }

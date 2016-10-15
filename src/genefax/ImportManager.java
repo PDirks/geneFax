@@ -22,8 +22,8 @@ public class ImportManager {
 //    private int numConditions;
     final private int MIN_FLD_COUNT = 3;
     
-    private String dataPath = "/home/pete/Documents/biochem_data/test_data_1.csv";
-    private String relationPath = "/home/pete/Documents/biochem_data/test_data_2.csv";
+    private String dataPath = "/home/pete/Documents/biochem_data/test_data_a.csv";
+    private String relationPath = "/home/pete/Documents/biochem_data/test_data_c.csv";
     
     /**
      * 
@@ -155,12 +155,24 @@ public class ImportManager {
         try {
             br = new BufferedReader( new FileReader( relationPath ) );
             while((line = br.readLine()) != null){
+                
+                if(rowCount == 0){
+                    rowCount++;
+                    continue;
+                }
                 String[] parsed_data = line.split(delimiter);
+                System.out.println("debug~~~~~"+line+" xxxxxx "+parsed_data[2]);
+                
+                String t0 = parsed_data[2];
+                t0.replace('−', '-');
+                String t1 = parsed_data[3];
+                t1.replace('−', '-');
+                System.out.println("debug~~~~~"+line+" xxxxxx "+t0);
                 GeneRelation gr = new GeneRelation(
                         parsed_data[0],
                         parsed_data[1],
-                        new Float( parsed_data[2] ).floatValue(),
-                        new Float( parsed_data[3] ).floatValue()
+                        Float.parseFloat(t0),
+                        Float.parseFloat(t1)
                 );
                 ret.add(gr);
             }// end while
