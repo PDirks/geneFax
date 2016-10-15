@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="content" prefHeight="538.0" prefWidth="875.0" style="-fx-background-color: #2d2e33;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genefax.GeneFaxUIController">
+   <children>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="875.0" style="-fx-background-color: whitesmoke;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <menus>
+            <Menu mnemonicParsing="false" text="Home">
+              <items>
+                <MenuItem fx:id="phoneHome" mnemonicParsing="false" onAction="#goHome" text="Home Page" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#load" text="About">
+               <items>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#load" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane layoutX="4.0" layoutY="35.0" prefHeight="489.0" prefWidth="875.0">
+         <children>
+            <Pane fx:id="graph" layoutX="297.0" layoutY="6.0" prefHeight="477.0" prefWidth="569.0" />
+            <ChoiceBox fx:id="graphChoice" layoutY="6.0" prefHeight="32.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

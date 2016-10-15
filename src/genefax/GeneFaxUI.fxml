@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,31 +9,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="genefax.GeneFaxUIController">
+<AnchorPane id="AnchorPane" fx:id="content" prefHeight="538.0" prefWidth="875.0" style="-fx-background-color: #2d2e33;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genefax.GeneFaxUIController">
    <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" onAction="#load" text="About">
-            <items>
-              <MenuItem fx:id="about" mnemonicParsing="false" onAction="#load" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <Button layoutX="106.0" layoutY="168.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Start" />
-      <TextField layoutX="106.0" layoutY="137.0" prefHeight="31.0" prefWidth="142.0" text="Start New Project" />
-      <TextField layoutX="106.0" layoutY="222.0" prefHeight="31.0" prefWidth="164.0" text="Open Existing Project" />
-      <Button layoutX="106.0" layoutY="253.0" mnemonicParsing="false" text="Open" />
+      <AnchorPane layoutY="42.0" prefHeight="489.0" prefWidth="875.0">
+         <children>
+            <ImageView fitHeight="364.0" fitWidth="483.0" layoutX="354.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@RNAandDNA.png" />
+               </image>
+               <effect>
+                  <ColorAdjust contrast="-0.76" hue="0.02" />
+               </effect>
+            </ImageView>
+            <Button fx:id="startNew" layoutX="102.0" layoutY="166.0" mnemonicParsing="false" onAction="#chooseNew" prefHeight="63.0" prefWidth="191.0" text="Start New Project">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Text fill="WHITE" layoutX="293.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GeneFax" textAlignment="CENTER" wrappingWidth="288.6708984375">
+               <font>
+                  <Font name="HelveticaNeueLTPro-Roman" size="48.0" />
+               </font>
+            </Text>
+            <Button fx:id="loadOld" layoutX="102.0" layoutY="245.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="191.0" text="Open Existing Project">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Button fx:id="giveMeTheFacts" layoutX="102.0" layoutY="321.0" mnemonicParsing="false" onAction="#load" prefHeight="63.0" prefWidth="191.0" text="About">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

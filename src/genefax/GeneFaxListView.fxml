@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="content" prefHeight="538.0" prefWidth="875.0" style="-fx-background-color: #2d2e33;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genefax.GeneFaxUIController">
+   <children>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="875.0" style="-fx-background-color: whitesmoke;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <menus>
+            <Menu mnemonicParsing="false" text="Home">
+              <items>
+                <MenuItem fx:id="phoneHome" mnemonicParsing="false" onAction="#goHome" text="Home Page" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Graph">
+               <items>
+                  <MenuItem fx:id="graphing" mnemonicParsing="false" onAction="#graphPage" text="Let's Move On" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#load" text="About">
+               <items>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#load" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane layoutY="25.0" prefHeight="489.0" prefWidth="875.0">
+         <children>
+            <TextArea fx:id="geneDescription" layoutX="4.0" layoutY="53.0" prefHeight="450.0" prefWidth="302.0" style="-fx-background-color: whitesmoke;" text="Gene&#10;&#10;Summary" />
+            <TableView fx:id="listView" layoutX="312.0" layoutY="53.0" prefHeight="450.0" prefWidth="559.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Text fill="WHITE" layoutX="408.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Foldchange" />
+            <Text fill="WHITE" layoutX="620.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="p-value" />
+            <Button fx:id="filter" layoutX="312.0" layoutY="14.0" mnemonicParsing="false" text="Filter List">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="foldchangeChoice" layoutX="491.0" layoutY="14.0" prefHeight="31.0" prefWidth="119.0" />
+            <TextField fx:id="pvalueChoice" layoutX="677.0" layoutY="14.0" prefHeight="31.0" prefWidth="119.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
