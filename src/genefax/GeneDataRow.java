@@ -18,6 +18,7 @@ public class GeneDataRow {
     private ArrayList<Float> dataPoints;
     private String dataLabel;
     private Float dataAvg;
+    private Float p;
     
     public GeneDataRow( String geneName, String geneID, String dataLabel, float avg){
         this.geneName = geneName;
@@ -25,6 +26,12 @@ public class GeneDataRow {
         this.dataPoints = new ArrayList<Float>(arrayListCount);
         this.dataLabel = dataLabel;
         this.dataAvg = avg;
+        this.p = 0f;
+    }
+    
+    public GeneDataRow( String geneName, String geneID, String dataLabel, float avg, float p){
+        this( geneName, geneID, dataLabel, avg );
+        this.p = p;
     }
     
     public boolean addDataPoint( float data ){
@@ -50,6 +57,11 @@ public class GeneDataRow {
     
     public float getDataAvg(){
         return this.dataAvg;
+    }
+ 
+    public float getP(){
+        //TODO
+        return 0f;
     }
     
 }
