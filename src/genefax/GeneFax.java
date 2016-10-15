@@ -34,18 +34,19 @@ public class GeneFax extends Application {
             }
         });
        
-        DBmanager test = new DBmanager();
+        TestController tc = new TestController();
+        tc.runTests();
         
-        test.dbInit();
-        test.createTable();
-        test.insert();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));
+            Scene scene = new Scene(root, 300, 250);
+            primaryStage.setTitle("Hello World!");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+        catch( Exception e ){}
         
-        Parent root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));
         
-        Scene scene = new Scene(root, 300, 250);
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
     
 

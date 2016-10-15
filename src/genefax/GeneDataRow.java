@@ -60,6 +60,10 @@ public class GeneDataRow {
     public float getDataAvg(){
         return this.dataAvg;
     }
+    
+    public String getDataAvgStr(){
+        return this.dataAvg.toString();
+    }
  
     public void calcP(){
         // TODO

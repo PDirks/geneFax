@@ -17,8 +17,16 @@ public class TestController {
     
     public boolean runTests(){
         
-        return testCSVload();
-    
+        ImportManager imp = new ImportManager("/home/pete/Downloads/test_data_1.csv", 2);
+        ArrayList<GeneDataRow> gdr = imp.importCSV();
+        
+        DBmanager test = new DBmanager("jdbc:sqlite:GeneFax.db");
+//        test.dropTable("jdbc:sqlite:GeneFax.db");
+        test.createTable();
+        test.insert(gdr, "/home/pete/Downloads/test_data_1.csv");
+        test.getAllFromFile("/home/pete/Downloads/test_data_1.csv").size();
+        
+        return true;
     }
     
     public boolean testCSVload(){
