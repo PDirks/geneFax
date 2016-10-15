@@ -65,10 +65,11 @@ public class ImportManager {
                     String[] parsed_data = line.split(delimiter);
                     
                     // if not enough data feilds are provided, return null
-                    if( MIN_FLD_COUNT > parsed_data.length ){
+                    if( 0 == rowCount && MIN_FLD_COUNT > parsed_data.length ){
+                        System.out.println("NULL!");
                         return null;
                     }
-                    
+//                    System.out.println("getting "+parsed_data[1] + dataLabel);
                     GeneDataRow gdr = new GeneDataRow( parsed_data[0], 
                             parsed_data[1],
                             dataLabel,
@@ -77,17 +78,20 @@ public class ImportManager {
                     for( int i = 0 ; i < replicantCount; i++ ){
                         gdr.addDataPoint(new Float(parsed_data[2 + i]).floatValue());
                     }
-                    
+                    ret.add(gdr);
                 }
+                rowCount++;
             }// end while
         }// end try
         catch( FileNotFoundException e ){
             e.printStackTrace();
             ret = null;
+            System.out.println("NULL!");
         }
         catch( IOException e) {
             e.printStackTrace();
             ret = null;
+            System.out.println("NULL!");
         }
         finally{
             if( br != null ){
@@ -97,10 +101,10 @@ public class ImportManager {
                 catch( IOException e ){
                     e.printStackTrace();
                     ret = null;
+                    System.out.println("NULL!");
                 }
             }// end is null check
         }
-        
         return ret;
         
     }// end importCSV
