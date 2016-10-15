@@ -55,7 +55,7 @@ public class ImportManager {
         int rowCount = 0;
         
         try {
-            br = new BufferedReader( new FileReader(this.importPath) );
+            br = new BufferedReader( new FileReader( "/home/pete/Documents/biochem_data/test_data_1.csv" ) );
             while((line = br.readLine()) != null){
                 if( 0 == rowCount ){
                     String[] parsed_data = line.split(delimiter);

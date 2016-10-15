@@ -23,14 +23,30 @@ import javafx.stage.Stage;
 public class GeneFax extends Application {
     
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
+        Button btn = new Button();
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+       
+        TestController tc = new TestController();
+        tc.runTests();
         
-        Parent root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));
+            Scene scene = new Scene(root, 300, 250);
+            primaryStage.setTitle("Hello World!");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+        catch( Exception e ){}
         
-        Scene scene = new Scene(root, 300, 250);
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        
     }
     
 
