@@ -19,6 +19,7 @@ public class GeneDataRow {
     private String dataLabel;
     private Float dataAvg;
     private Float p;
+    private Float foldChange;
     
     public GeneDataRow( String geneName, String geneID, String dataLabel, float avg){
         this.geneName = geneName;
@@ -27,6 +28,7 @@ public class GeneDataRow {
         this.dataLabel = dataLabel;
         this.dataAvg = avg;
         this.p = 0f;
+        this.foldChange = 0f;
     }
     
     public GeneDataRow( String geneName, String geneID, String dataLabel, float avg, float p){
@@ -59,9 +61,21 @@ public class GeneDataRow {
         return this.dataAvg;
     }
  
+    public void calcP(){
+        // TODO
+    }
+    
+    public void calcFold(){
+        // TODO
+    }
+    
     public float getP(){
         //TODO
-        return 0f;
+        return this.p;
+    }
+    
+    public float getFoldChange(){
+        return this.foldChange;
     }
     
 }
