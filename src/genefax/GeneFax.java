@@ -30,6 +30,12 @@ public class GeneFax extends Application {
                 System.out.println("Hello World!");
             }
         });
+       
+        DBmanager test = new DBmanager();
+        
+        test.dbInit();
+        test.createTable();
+        test.insert();
         
         StackPane root = new StackPane();
         root.getChildren().add(btn);
