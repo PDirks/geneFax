@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -39,8 +40,10 @@ public class GeneFax extends Application {
         
         try{
             Parent root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));
-            Scene scene = new Scene(root, 300, 250);
-            primaryStage.setTitle("Hello World!");
+            Image icon = new Image(getClass().getResourceAsStream("icon.png"));
+            primaryStage.getIcons().add(icon);
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("GeneFax");
             primaryStage.setScene(scene);
             primaryStage.show();
         }

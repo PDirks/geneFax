@@ -5,6 +5,8 @@
  */
 package genefax;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +29,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -48,8 +51,8 @@ public class GeneFaxUIController implements Initializable {
     @FXML
     private Button giveMeTheFacts;
     
-    @FXML
-    private MenuItem file;
+    //@FXML
+    //private MenuItem file;
     
     @FXML
     private MenuItem edit;
@@ -58,13 +61,25 @@ public class GeneFaxUIController implements Initializable {
     private Button startNew;
     
     @FXML
-    private Button loadOld;
+    private Button SkipNew;
     
     @FXML
     private Button loadNew;
     
     @FXML
-    private TextField loadName;
+    public TextField conditionA;
+    
+    @FXML
+    public TextField conditionB;
+    
+    @FXML
+    public TextField conditionC;
+    
+    @FXML Button buttonA;
+    
+    @FXML Button buttonB;
+    
+    @FXML Button buttonC;
     
     @FXML
     private TextField replicants;
@@ -104,6 +119,9 @@ public class GeneFaxUIController implements Initializable {
     
     @FXML
     private Button returnHome;
+    
+    @FXML
+    private Button triggerExample;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -157,6 +175,19 @@ public class GeneFaxUIController implements Initializable {
       stage.show();
     }
     
+     @FXML
+    private void skipLoad(ActionEvent event) throws IOException{
+        
+     Stage stage; 
+     Parent root;
+      root = FXMLLoader.load(getClass().getResource("GeneFaxListView.fxml"));
+     //create a new scene with root and set the stage
+      stage =(Stage) content.getScene().getWindow();
+      Scene scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+    }
+    
     @FXML
     private void graphPage(ActionEvent event) throws IOException{
      Stage stage; 
@@ -168,4 +199,40 @@ public class GeneFaxUIController implements Initializable {
      stage.setScene(scene);
      stage.show();
     }
+    
+      @FXML
+    private void instruct(ActionEvent event) throws IOException{
+     Stage stage; 
+     Parent root;
+     root = FXMLLoader.load(getClass().getResource("InstructionImage.fxml"));
+     //create a new scene with root and set the stage
+     stage =(Stage) content.getScene().getWindow();
+     Scene scene = new Scene(root);
+     stage.setScene(scene);
+     stage.show();
+    }
+    
+    @FXML
+    private void chooseExperimentA() {
+      FileChooser chooser = new FileChooser();
+            Stage stage = (Stage) returnHome.getScene().getWindow();
+            File filename = chooser.showOpenDialog(stage);
+            conditionA.setText(filename.toString());
+    }
+    
+      @FXML
+    private void chooseExperimentB() {
+      FileChooser chooser = new FileChooser();
+            Stage stage = (Stage) returnHome.getScene().getWindow();
+            File filename = chooser.showOpenDialog(stage);
+            conditionB.setText(filename.toString());
+    }
+    
+    @FXML
+     private void chooseFold() {
+      FileChooser chooser = new FileChooser();
+            Stage stage = (Stage) returnHome.getScene().getWindow();
+            File filename = chooser.showOpenDialog(stage);
+            conditionC.setText(filename.toString());
+     }
 }

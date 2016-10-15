@@ -9,37 +9,59 @@
 
 <AnchorPane id="AnchorPane" fx:id="content" prefHeight="538.0" prefWidth="875.0" style="-fx-background-color: #2d2e33;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genefax.GeneFaxUIController">
    <children>
-      <AnchorPane layoutY="35.0" prefHeight="489.0" prefWidth="875.0">
+      <AnchorPane layoutY="30.0" prefHeight="489.0" prefWidth="875.0">
          <children>
             <Text fill="WHITE" layoutX="257.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Project" textAlignment="CENTER" wrappingWidth="360.6708984375">
                <font>
                   <Font size="48.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="121.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Upload">
+            <Text fill="WHITE" layoutX="55.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Foldchange and Q Value Data Upload">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="121.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Replicants">
+            <Text fill="WHITE" layoutX="631.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Replicates">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="loadName" layoutX="187.0" layoutY="144.0" prefHeight="31.0" prefWidth="532.0" style="-fx-background-color: whitesmoke;" />
-            <TextField fx:id="replicants" layoutX="121.0" layoutY="245.0" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: whitesmoke;" />
-            <Button fx:id="loadNew" layoutX="121.0" layoutY="144.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Load">
+            <TextField fx:id="conditionA" layoutX="121.0" layoutY="144.0" prefHeight="31.0" prefWidth="532.0" style="-fx-background-color: whitesmoke;" />
+            <TextField fx:id="replicants" layoutX="631.0" layoutY="245.0" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: whitesmoke;" />
+            <Button fx:id="conditionC" layoutX="54.0" layoutY="144.0" mnemonicParsing="false" onAction="#graphPage" prefHeight="31.0" prefWidth="67.0" text="Load">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Text fill="WHITE" layoutX="123.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+            <Text fill="WHITE" layoutX="56.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="newName" layoutX="121.0" layoutY="340.0" prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: whitesmoke;" />
-            <Button fx:id="submit" layoutX="122.0" layoutY="399.0" mnemonicParsing="false" onAction="#submitLoad" prefHeight="31.0" prefWidth="126.0" text="Submit">
+            <TextField fx:id="newName" layoutX="56.0" layoutY="339.0" prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: whitesmoke;" />
+            <Button fx:id="submit" layoutX="54.0" layoutY="396.0" mnemonicParsing="false" onAction="#submitLoad" prefHeight="31.0" prefWidth="126.0" text="Submit">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Text fill="WHITE" layoutX="56.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition A ">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="339.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition B">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField layoutX="121.0" layoutY="245.0" />
+            <TextField layoutX="406.0" layoutY="245.0" />
+            <Button fx:id="conditionB" layoutX="339.0" layoutY="245.0" mnemonicParsing="false" onAction="#chooseExperimentB" prefHeight="31.0" prefWidth="67.0" text="Load">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="conditionC1" layoutX="54.0" layoutY="245.0" mnemonicParsing="false" onAction="#chooseExperimentA" prefHeight="31.0" prefWidth="67.0" text="Load">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

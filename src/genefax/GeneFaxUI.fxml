@@ -21,7 +21,7 @@
                   <ColorAdjust contrast="-0.76" hue="0.02" />
                </effect>
             </ImageView>
-            <Button fx:id="startNew" layoutX="102.0" layoutY="166.0" mnemonicParsing="false" onAction="#chooseNew" prefHeight="63.0" prefWidth="191.0" text="Start New Project">
+            <Button fx:id="startNew" layoutX="102.0" layoutY="129.0" mnemonicParsing="false" onAction="#chooseNew" prefHeight="63.0" prefWidth="191.0" text="Start New Project">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Font name="HelveticaNeueLTPro-Roman" size="48.0" />
                </font>
             </Text>
-            <Button fx:id="loadOld" layoutX="102.0" layoutY="245.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="191.0" text="Open Existing Project">
+            <Button fx:id="SkipNew" layoutX="102.0" layoutY="202.0" mnemonicParsing="false" onAction="#skipLoad" prefHeight="63.0" prefWidth="191.0" text="Open Existing Project">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -42,7 +42,15 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Button fx:id="giveMeTheFacts" layoutX="102.0" layoutY="321.0" mnemonicParsing="false" onAction="#load" prefHeight="63.0" prefWidth="191.0" text="About">
+            <Button fx:id="giveMeTheFacts" layoutX="102.0" layoutY="276.0" mnemonicParsing="false" onAction="#load" prefHeight="63.0" prefWidth="191.0" text="About">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Button fx:id="triggerExample" layoutX="103.0" layoutY="351.0" mnemonicParsing="false" onAction="#instruct" prefHeight="63.0" prefWidth="191.0" text="Example Files">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
                <effect>
                   <InnerShadow />
                </effect>

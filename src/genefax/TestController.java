@@ -17,20 +17,20 @@ public class TestController {
     
     public boolean runTests(){
         
-        ImportManager imp = new ImportManager("./test_data_1.csv", 2);
+        ImportManager imp = new ImportManager("C:\\Users\\Aaron\\Documents\\NetBeansProjects\\geneFax\\test_data_1.csv", 2);
         ArrayList<GeneDataRow> gdr = imp.importCSV();
         
         DBmanager test = new DBmanager("jdbc:sqlite:GeneFax.db");
 //        test.dropTable("jdbc:sqlite:GeneFax.db");
         test.createTable();
-        test.insert(gdr, "./test_data_1.csv");
-        test.getAllFromFile("./test_data_1.csv").size();
+        test.insert(gdr, "C:\\Users\\Aaron\\Documents\\NetBeansProjects\\geneFax\\test_data_1.csv");
+        test.getAllFromFile("C:\\Users\\Aaron\\Documents\\NetBeansProjects\\geneFax\\test_data_1.csv").size();
         
         return true;
     }
     
     public boolean testCSVload(){
-        String path = "./test_data_0.csv";
+        String path = "C:\\Users\\Aaron\\Documents\\NetBeansProjects\\geneFax\\src\\genefax\\test_data_0.csv";
         int replicants = 2;
         ImportManager im = new ImportManager(path, replicants);
         ArrayList<GeneDataRow> gdrs = im.importCSV();

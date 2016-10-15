@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="content" prefHeight="538.0" prefWidth="875.0" style="-fx-background-color: #2d2e33;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genefax.GeneFaxUIController">
+   <children>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="886.0" style="-fx-background-color: whitesmoke;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <menus>
+            <Menu mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem fx:id="phoneHome" mnemonicParsing="false" onAction="#goHome" text="Home Page" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Graph">
+               <items>
+                  <MenuItem fx:id="graphingCompare" mnemonicParsing="false" onAction="#graphComparePage" text="Compare Graph" />
+                  <MenuItem fx:id="graphingControl" mnemonicParsing="false" onAction="#graphControlPage" text="Control Graph" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#load" text="About">
+               <items>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#load" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane layoutX="4.0" layoutY="35.0" prefHeight="489.0" prefWidth="875.0">
+         <children>
+            <Pane fx:id="graph" layoutX="278.0" layoutY="63.0" prefHeight="415.0" prefWidth="574.0" />
+            <ChoiceBox fx:id="graphChoice" layoutX="321.0" layoutY="6.0" prefHeight="32.0" prefWidth="234.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ChoiceBox>
+            <Text fill="WHITE" layoutX="280.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File 1" />
+            <Text fill="WHITE" layoutX="69.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Control Test">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <ListView layoutX="14.0" layoutY="55.0" prefHeight="430.0" prefWidth="213.0" />
+            <Button fx:id="plotControl" layoutX="577.0" layoutY="7.0" mnemonicParsing="false" onAction="#controlPlot" text="Produce Plot">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -22,8 +22,8 @@ public class ImportManager {
 //    private int numConditions;
     final private int MIN_FLD_COUNT = 3;
     
-    private String dataPath = "/home/pete/Documents/biochem_data/test_data_1.csv";
-    private String relationPath = "/home/pete/Documents/biochem_data/test_data_2.csv";
+    private String dataPath = "C:\\Users\\Aaron\\Documents\\NetBeansProjects\\geneFax\\test_data_a.csv";
+    private String relationPath = "C:\\Users\\Aaron\\Documents\\NetBeansProjects\\geneFax\\test_data_b.csv";
     
     /**
      * 
