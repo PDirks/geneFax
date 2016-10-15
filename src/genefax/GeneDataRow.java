@@ -20,6 +20,7 @@ public class GeneDataRow {
     private Float dataAvg;
     private Float p;
     private Float foldChange;
+    private int numConditions;
     
     public GeneDataRow( String geneName, String geneID, String dataLabel, float avg){
         this.geneName = geneName;
@@ -34,6 +35,11 @@ public class GeneDataRow {
     public GeneDataRow( String geneName, String geneID, String dataLabel, float avg, float p){
         this( geneName, geneID, dataLabel, avg );
         this.p = p;
+    }
+    
+    public GeneDataRow( String geneName, String geneID, String dataLabel, float avg, int numConditions){
+        this( geneName, geneID, dataLabel, avg );
+        this.numConditions = numConditions;
     }
     
     public boolean addDataPoint( float data ){
@@ -65,6 +71,10 @@ public class GeneDataRow {
         return this.dataAvg.toString();
     }
  
+    public int getNumConditions(){
+        return this.numConditions;
+    }
+    
     public void calcP(){
         // TODO
     }
