@@ -177,7 +177,8 @@ public class GeneFaxUIController implements Initializable {
       stage.show();
     }
     
-     @FXML
+    //Switch UI to the table view
+    @FXML
     private void goToTable(ActionEvent event) throws IOException{    
      Stage stage; 
      Parent root;
@@ -189,6 +190,7 @@ public class GeneFaxUIController implements Initializable {
       stage.show();
     }
     
+    //Switch UI to the graph view
     @FXML
     private void goToGraph(ActionEvent event) throws IOException{
      Stage stage; 
@@ -201,6 +203,7 @@ public class GeneFaxUIController implements Initializable {
      stage.show();
     }
     
+    //Switch UI to the "example" view
     @FXML
     private void goToExample(ActionEvent event) throws IOException{
      Stage stage; 
@@ -213,30 +216,34 @@ public class GeneFaxUIController implements Initializable {
      stage.show();
     }
     
+    //Load the first condition file
     @FXML
-    private void chooseConditionA() {
+    private void chooseConditionAFile() {
       FileChooser chooser = new FileChooser();
             Stage stage = (Stage) triggerHomeViewBtn.getScene().getWindow();
             File filename = chooser.showOpenDialog(stage);
             conditionAFilename.setText(filename.toString());
     }
     
-      @FXML
-    private void chooseConditionB() {
+    //Load the second condition file
+    @FXML
+    private void chooseConditionBFile() {
       FileChooser chooser = new FileChooser();
             Stage stage = (Stage) triggerHomeViewBtn.getScene().getWindow();
             File filename = chooser.showOpenDialog(stage);
             conditionBFilename.setText(filename.toString());
     }
     
+    //Load the foldchange file
     @FXML
-     private void chooseFold() {
+     private void chooseFoldchangeFile() {
       FileChooser chooser = new FileChooser();
             Stage stage = (Stage) triggerHomeViewBtn.getScene().getWindow();
             File filename = chooser.showOpenDialog(stage);
             foldchangeFileName.setText(filename.toString());
      }
      
+     //Used for graphing on the graph view
      @FXML
      private void VolcanoGraph() {
         
@@ -260,4 +267,11 @@ public class GeneFaxUIController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+     
+     @FXML
+     protected void retrieveTableData() {
+         
+     }
 }
+
+
