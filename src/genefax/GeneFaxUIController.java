@@ -205,7 +205,7 @@ public class GeneFaxUIController implements Initializable {
     private void goToExample(ActionEvent event) throws IOException{
      Stage stage; 
      Parent root;
-     root = FXMLLoader.load(getClass().getResource("InstructionImage.fxml"));
+     root = FXMLLoader.load(getClass().getResource("GeneFaxInstructionImage.fxml"));
      //create a new scene with root and set the stage
      stage =(Stage) content.getScene().getWindow();
      Scene scene = new Scene(root);
@@ -245,7 +245,7 @@ public class GeneFaxUIController implements Initializable {
         final NumberAxis theXAxis = new NumberAxis(0,2000,1);
         final NumberAxis theYAxis = new NumberAxis (0,10,0.1);
         
-        final ScatterChart<Number,Number> scatterChart = new ScatterChart<Number,Number>(theXAxis,theYAxis);
+        final ScatterChart<Number,Number> scatterChart = new ScatterChart<>(theXAxis,theYAxis);
         theXAxis.setLabel("Foldchange");
         theYAxis.setLabel("q-value");
         scatterChart.setTitle("Volcano Plot");
