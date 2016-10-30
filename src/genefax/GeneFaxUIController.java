@@ -17,6 +17,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -38,63 +41,58 @@ import javafx.stage.Stage;
  * @author bgbal_000
  */
 public class GeneFaxUIController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    //Initializes the controller class.
     @FXML
     private AnchorPane content;
     
     @FXML
-    private MenuItem about;
+    private Button triggerHomeViewBtn;
     
     @FXML
-    private Button giveMeTheFacts;
-    
-    //@FXML
-    //private MenuItem file;
+    private Button triggerAboutBtn;
     
     @FXML
-    private MenuItem edit;
+    private MenuItem triggerAboutMenu;
+            
+    @FXML
+    private Button triggerNewProjectViewBtn;
     
     @FXML
-    private Button startNew;
+    private Button triggerTableViewBtn;
     
     @FXML
-    private Button SkipNew;
+    private Button loadFileBtn;
     
     @FXML
-    private Button loadNew;
+    public TextField conditionAFilename;
     
     @FXML
-    public TextField conditionA;
+    public TextField conditionBFilename;
     
     @FXML
-    public TextField conditionB;
+    public TextField foldchangeFileName;
+    
+    @FXML 
+    private Button triggerConditionABtn;
+    
+    @FXML 
+    private Button triggerConditionBBtn;
     
     @FXML
-    public TextField conditionC;
-    
-    @FXML Button buttonA;
-    
-    @FXML Button buttonB;
-    
-    @FXML Button buttonC;
+    private TextField numOfReplicates;
     
     @FXML
-    private TextField replicants;
+    private TextField comparisonFileName;
     
     @FXML
-    private TextField newName;
-    
-    @FXML
-    private Button submit;
+    private Button submitBtn;
     
     @FXML
     private TextArea geneDescription;
     
     @FXML
-    private TableView listView;
+    private TableView table;
     
     @FXML
     private ChoiceBox graphChoice;
@@ -103,7 +101,10 @@ public class GeneFaxUIController implements Initializable {
     private Pane graph;
     
     @FXML
-    private Button filter;
+    private Button triggerFilterBtn;
+    
+    @FXML
+    private Button triggerFoldchangeChoiceBtn;
     
     @FXML
     private TextField foldchangeChoice;
@@ -112,33 +113,31 @@ public class GeneFaxUIController implements Initializable {
     private TextField pvalueChoice;
     
     @FXML
-    private MenuItem graphing;
+    private MenuItem triggerGraphViewMenu;
     
     @FXML
-    private MenuItem phoneHome;
+    private MenuItem triggerHomeViewMenu;
     
     @FXML
-    private Button returnHome;
-    
-    @FXML
-    private Button triggerExample;
+    private Button triggerExampleViewBtn;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
+    //The about function is used to give a short description of the app.
     @FXML
-    public void load() {
-        
+    public void about() {
         Alert load = new Alert(AlertType.INFORMATION);
         load.setTitle("About GeneFax");
         load.setContentText("GeneFax is a free way to analyze experiment results concerning genes.");
         load.showAndWait();
     }
     
+    //The goHome function is used to return to the home page from any other page.
     @FXML
-    public void goHome(ActionEvent event) throws IOException{
+    public void goToHome(ActionEvent event) throws IOException{
      Stage stage; 
      Parent root;
      root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));
@@ -149,8 +148,9 @@ public class GeneFaxUIController implements Initializable {
      stage.show();
     }
     
+    //If the user chooses to upload a new project, the new project page will open
     @FXML
-    private void chooseNew(ActionEvent event) throws IOException{
+    private void goToNew(ActionEvent event) throws IOException{
         
      Stage stage; 
      Parent root;
@@ -162,12 +162,14 @@ public class GeneFaxUIController implements Initializable {
       stage.show();
     }
     
+    /*If the user decides to upload an old project, the page goes to the gene 
+      table view*/
     @FXML
-    private void submitLoad(ActionEvent event) throws IOException{
+    private void chooseLoad(ActionEvent event) throws IOException{
         
      Stage stage; 
      Parent root;
-      root = FXMLLoader.load(getClass().getResource("GeneFaxListView.fxml"));
+      root = FXMLLoader.load(getClass().getResource("GeneFaxTableView.fxml"));
      //create a new scene with root and set the stage
       stage =(Stage) content.getScene().getWindow();
       Scene scene = new Scene(root);
@@ -176,11 +178,10 @@ public class GeneFaxUIController implements Initializable {
     }
     
      @FXML
-    private void skipLoad(ActionEvent event) throws IOException{
-        
+    private void goToTable(ActionEvent event) throws IOException{    
      Stage stage; 
      Parent root;
-      root = FXMLLoader.load(getClass().getResource("GeneFaxListView.fxml"));
+      root = FXMLLoader.load(getClass().getResource("GeneFaxTableView.fxml"));
      //create a new scene with root and set the stage
       stage =(Stage) content.getScene().getWindow();
       Scene scene = new Scene(root);
@@ -189,7 +190,7 @@ public class GeneFaxUIController implements Initializable {
     }
     
     @FXML
-    private void graphPage(ActionEvent event) throws IOException{
+    private void goToGraph(ActionEvent event) throws IOException{
      Stage stage; 
      Parent root;
      root = FXMLLoader.load(getClass().getResource("GeneFaxGraphView.fxml"));
@@ -200,8 +201,8 @@ public class GeneFaxUIController implements Initializable {
      stage.show();
     }
     
-      @FXML
-    private void instruct(ActionEvent event) throws IOException{
+    @FXML
+    private void goToExample(ActionEvent event) throws IOException{
      Stage stage; 
      Parent root;
      root = FXMLLoader.load(getClass().getResource("InstructionImage.fxml"));
@@ -213,26 +214,50 @@ public class GeneFaxUIController implements Initializable {
     }
     
     @FXML
-    private void chooseExperimentA() {
+    private void chooseConditionA() {
       FileChooser chooser = new FileChooser();
-            Stage stage = (Stage) returnHome.getScene().getWindow();
+            Stage stage = (Stage) triggerHomeViewBtn.getScene().getWindow();
             File filename = chooser.showOpenDialog(stage);
-            conditionA.setText(filename.toString());
+            conditionAFilename.setText(filename.toString());
     }
     
       @FXML
-    private void chooseExperimentB() {
+    private void chooseConditionB() {
       FileChooser chooser = new FileChooser();
-            Stage stage = (Stage) returnHome.getScene().getWindow();
+            Stage stage = (Stage) triggerHomeViewBtn.getScene().getWindow();
             File filename = chooser.showOpenDialog(stage);
-            conditionB.setText(filename.toString());
+            conditionBFilename.setText(filename.toString());
     }
     
     @FXML
      private void chooseFold() {
       FileChooser chooser = new FileChooser();
-            Stage stage = (Stage) returnHome.getScene().getWindow();
+            Stage stage = (Stage) triggerHomeViewBtn.getScene().getWindow();
             File filename = chooser.showOpenDialog(stage);
-            conditionC.setText(filename.toString());
+            foldchangeFileName.setText(filename.toString());
      }
+     
+     @FXML
+     private void VolcanoGraph() {
+        
+        Stage stage =(Stage) content.getScene().getWindow();
+        
+        final NumberAxis theXAxis = new NumberAxis(0,2000,1);
+        final NumberAxis theYAxis = new NumberAxis (0,10,0.1);
+        
+        final ScatterChart<Number,Number> scatterChart = new ScatterChart<Number,Number>(theXAxis,theYAxis);
+        theXAxis.setLabel("Foldchange");
+        theYAxis.setLabel("q-value");
+        scatterChart.setTitle("Volcano Plot");
+        
+        //final String SELECT_QUERY = "SELECT "
+        XYChart.Series dots = new XYChart.Series();
+        dots.setName("Gene");
+        dots.getData().add(new XYChart.Data(100, 5));
+        
+        scatterChart.getData().addAll(dots);
+        Scene scene = new Scene(scatterChart, 500, 400);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

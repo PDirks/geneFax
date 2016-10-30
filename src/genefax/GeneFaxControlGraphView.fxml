@@ -15,7 +15,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Home">
                <items>
-                  <MenuItem fx:id="phoneHome" mnemonicParsing="false" onAction="#goHome" text="Home Page" />
+                  <MenuItem fx:id="triggerHomeViewMenu" mnemonicParsing="false" onAction="#goToHome" text="Home Page" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="File">

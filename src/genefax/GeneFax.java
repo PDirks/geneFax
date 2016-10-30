@@ -36,7 +36,7 @@ public class GeneFax extends Application {
         });
        
         TestController tc = new TestController();
-        tc.runTests();
+        //tc.runTests();
         
         try{
             Parent root = FXMLLoader.load(getClass().getResource("GeneFaxUI.fxml"));

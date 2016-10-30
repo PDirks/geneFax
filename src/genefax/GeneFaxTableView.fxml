@@ -15,7 +15,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Home">
               <items>
-                <MenuItem fx:id="phoneHome" mnemonicParsing="false" onAction="#goHome" text="Home Page" />
+                <MenuItem fx:id="triggerHomeViewMenu" mnemonicParsing="false" onAction="#goToHome" text="Home Page" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="File">
@@ -25,12 +25,12 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Graph">
                <items>
-                  <MenuItem fx:id="graphing" mnemonicParsing="false" onAction="#graphPage" text="Let's Move On" />
+                  <MenuItem fx:id="triggerGraphViewMenu" mnemonicParsing="false" onAction="#goToGraph" text="Let's Move On" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" onAction="#load" text="About">
+            <Menu mnemonicParsing="false" text="About">
                <items>
-                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#load" text="About" />
+                  <MenuItem fx:id="triggerAboutMenu" mnemonicParsing="false" onAction="#about" text="About" />
                </items>
             </Menu>
          </menus>
@@ -38,7 +38,7 @@
       <AnchorPane layoutY="25.0" prefHeight="489.0" prefWidth="875.0">
          <children>
             <TextArea fx:id="geneDescription" layoutX="4.0" layoutY="53.0" prefHeight="450.0" prefWidth="302.0" style="-fx-background-color: whitesmoke;" text="Gene&#10;&#10;Summary" />
-            <TableView fx:id="listView" layoutX="312.0" layoutY="53.0" prefHeight="450.0" prefWidth="559.0">
+            <TableView fx:id="table" layoutX="312.0" layoutY="53.0" prefHeight="450.0" prefWidth="559.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
@@ -46,7 +46,7 @@
             </TableView>
             <Text fill="WHITE" layoutX="408.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Foldchange" />
             <Text fill="WHITE" layoutX="620.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="p-value" />
-            <Button fx:id="filter" layoutX="312.0" layoutY="14.0" mnemonicParsing="false" text="Filter List">
+            <Button fx:id="triggerFilterBtn" layoutX="312.0" layoutY="14.0" mnemonicParsing="false" text="Filter List">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

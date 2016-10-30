@@ -1,0 +1,7 @@
+# Do not modify this property in this configuration. It can be re-generated.
+javafx.run.as=embedded
+<<<<<<< HEAD
+=======
+javafx.run.inbrowser=<Default System Browser>
+javafx.run.inbrowser.path=C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe
+>>>>>>> e9ab1aa0b30213480bb611f0d8deeac15b9a4097
