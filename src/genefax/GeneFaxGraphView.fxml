@@ -15,7 +15,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Home">
               <items>
-                <MenuItem fx:id="phoneHome" mnemonicParsing="false" onAction="#goHome" text="Home Page" />
+                <MenuItem fx:id="triggerHomeViewMenu" mnemonicParsing="false" onAction="#goToHome" text="Home Page" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="File">
@@ -30,15 +30,14 @@
             </Menu>
             <Menu mnemonicParsing="false" onAction="#load" text="About">
                <items>
-                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#load" text="About" />
+                  <MenuItem fx:id="triggerAboutBtn" mnemonicParsing="false" onAction="#about" text="About" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
       <AnchorPane layoutX="4.0" layoutY="35.0" prefHeight="489.0" prefWidth="875.0">
          <children>
-            <Pane fx:id="graph" layoutX="297.0" layoutY="6.0" prefHeight="477.0" prefWidth="569.0" />
-            <ChoiceBox fx:id="graphChoice" layoutY="6.0" prefHeight="32.0" prefWidth="289.0" />
+            <Pane fx:id="graph" layoutX="1.0" layoutY="20.0" prefHeight="463.0" prefWidth="865.0" />
          </children>
       </AnchorPane>
    </children>
